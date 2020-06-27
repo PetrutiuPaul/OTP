@@ -50,7 +50,7 @@ namespace OTPService.Service
             using (var hmac = new HMACSHA1())
             {
                 hmac.Key = Convert.FromBase64String(secret);
-                var hmacBytes = hmac.ComputeHash(BitConverter.GetBytes(GetWindow(currentTime)));
+                var hmacBytes = hmac.ComputeHash(ConvertHelper.GetBigEndianBytes(GetWindow(currentTime)));
                 return hmacBytes;
             }
         }
