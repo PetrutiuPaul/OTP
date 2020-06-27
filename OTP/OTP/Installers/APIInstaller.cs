@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OTP.Filters;
+using OTP.Services;
+using OTP.Services.Contracts;
+using OTPService.Installer;
 
 namespace OTP.Installers
 {
@@ -18,6 +21,9 @@ namespace OTP.Installers
                     })
                     .AddFluentValidation(opt => opt.RegisterValidatorsFromAssemblyContaining<Startup>());
 
+            services.AddOTPGenerator(new OTPService.Settings.OTPSettings(){ NumberOfDigits = 6, OTPLifeTime = 30 });
+
+            services.AddTransient<IUserSecretService, UserSecretService>();
         }
     }
 }

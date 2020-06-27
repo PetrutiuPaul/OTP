@@ -2,6 +2,6 @@
 {
     public class UserOTPResponse
     {
-        public string OTP { get; set; }
+        public int OTP { get; set; }
     }
 }
